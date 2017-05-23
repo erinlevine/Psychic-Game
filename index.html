@@ -17,12 +17,48 @@
 
 	 <div id="game">
           <ul class="list-group">
-            <li class="list-group-item"><p id="wins">Wins: </p></li>
-            <li class="list-group-item"><p id="losses">Losses: </p></li>
-            <li class="list-group-item"><p id="guessLeft">Guesses Left: </p></li>
-            <li class="list-group-item"><p id="soFar">Your Guesses so far: </p></li>
+            <li class="list-group-item"><p>Wins: <span id="wins"></span></p>
+            <li class="list-group-item"><p>Losses: <span id="losses"></span></p>
+            <li class="list-group-item"><p>Guesses Left: <span id="guessesLeft"></span></p>
+            <li class="list-group-item"><p>Your Guesses So Far: <span id="soFar"></span></p>
           </ul>  
         </div>
+
+    <script type="text/javascript">
+    	
+    	 // Our array of possible computer choices.
+      var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+      // Variables for tracking our wins, losses, guesses left, and how many guesses they've had so far. 
+      var wins = 0;
+      var losses = 0;
+      var guessesLeft = 0;
+      var soFar = 0;
+
+      // When the user presses a key, it will run the following function...
+      document.onkeyup = function(event) {
+
+      //Identifes the variable "userGuess" to be related to the onkeyup function. 
+      var userGuess = event.key;
+
+      // This is me just putzin' around and being a dingbat:
+
+		      //If the user presses a letter, run the game logic.
+		      //   if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") || (userGuess === "e")|| (userGuess === "f") || (userGuess === "g") || (userGuess === "h") || (userGuess === "i") || (userGuess === "j") || (userGuess === "k") || (userGuess === "l") || (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") || (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") || (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") || (userGuess === "y") || (userGuess === "z")){
+
+     if (computerChoices.indexOf(userGuess))>=0 {
+  		console.log("You picked a valid letter!");
+		} 
+
+     //So the userGuess can only be in the array of the computerChoices
+	      // computerChoices.indexOf(userGuess);
+	      // 	if 
+
+
+      // Sets the computerGuess variable equal to a random choice from the computerChoices array.
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    </script>
 	
 </body>
 </html>
