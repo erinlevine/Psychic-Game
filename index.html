@@ -11,52 +11,72 @@
 	</header>
 
 	<div class="Instructions">
-		<h3><em> Directions:</em> Try to guess the letter that the psychic has picked! You can select any number from A to Z!</h3>
+		<h3><em> Directions:</em> Try to guess the letter that the psychic has picked! You can select any letter from A to Z!</h3>
 		<h2>Let's find out if you're a psychic!</h2>
 	</div>
 
-	 <div id="game">
-          <ul class="list-group">
-            <li class="list-group-item"><p>Wins: <span id="wins"></span></p>
-            <li class="list-group-item"><p>Losses: <span id="losses"></span></p>
-            <li class="list-group-item"><p>Guesses Left: <span id="guessesLeft"></span></p>
-            <li class="list-group-item"><p>Your Guesses So Far: <span id="soFar"></span></p>
-          </ul>  
-        </div>
+	<div id="game">
+        <ul class="list-group">
+          <li class="list-group-item"><p>Wins: <span id="wins"></span></p>
+          <li class="list-group-item"><p>Losses: <span id="losses"></span></p>
+          <li class="list-group-item"><p>Guesses Left: <span id="guessesLeft"></span></p>
+          <li class="list-group-item"><p>Your Guesses So Far: <span id="soFar"></span></p>
+        </ul>  
+    </div>
 
     <script type="text/javascript">
     	
-    	 // Our array of possible computer choices.
+        // Our array of possible computer choices.
       var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+      // Sets the computerGuess variable equal to a random choice from the computerChoices array.
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
       // Variables for tracking our wins, losses, guesses left, and how many guesses they've had so far. 
       var wins = 0;
       var losses = 0;
-      var guessesLeft = 0;
-      var soFar = 0;
+      var guessesLeft = 10;
+      var guessedLetters = [];
+      var userGuess = "";
+       
+    console.log(computerGuess);      
 
       // When the user presses a key, it will run the following function...
       document.onkeyup = function(event) {
+    //Identifes the variable "userGuess" to be related to the onkeyup function. 
+        userGuess = event.key;
+        guessedLetters.push(userGuess);
+        //check if user added valid character
+        document.querySelector("#wins").innerHTML = wins;
+        document.querySelector("#soFar").innerHTML = guessedLetters;
+        document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+        document.querySelector("#losses").innerHTML = losses;
+    
+
+
+        //check if the letter guessed is equal to the computer guess. 
+        if(userGuess === computerGuess){
+            wins++
+            document.querySelector("#wins").innerHTML = wins;
+            alert("You won!");
+        } 
+
+        if(userGuess !== computerGuess){
+            guessesLeft--
+            console.log(guessesLeft);
+            document.querySelector("#soFar").innerHTML = guessedLetters;
+            document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+        }  
+
+        if(guessesLeft === 0){
+            losses++
+            document.querySelector("#losses").innerHTML = losses;
+            alert("You lost!");
+        }
       }
-      //Identifes the variable "userGuess" to be related to the onkeyup function. 
-      var userGuess = event.key;
+      
 
-      // This is me just putzin' around and being a dingbat:
-
-		      //If the user presses a letter, run the game logic.
-		      //   if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") || (userGuess === "e")|| (userGuess === "f") || (userGuess === "g") || (userGuess === "h") || (userGuess === "i") || (userGuess === "j") || (userGuess === "k") || (userGuess === "l") || (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") || (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") || (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") || (userGuess === "y") || (userGuess === "z")){
-
-     if (computerChoices.indexOf(userGuess)>=0) {
-  		console.log("You picked a valid letter!");
-		} 
-
-     //So the userGuess can only be in the array of the computerChoices
-	      // computerChoices.indexOf(userGuess);
-	      // 	if 
-
-
-      // Sets the computerGuess variable equal to a random choice from the computerChoices array.
-      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    
 
     </script>
 	
